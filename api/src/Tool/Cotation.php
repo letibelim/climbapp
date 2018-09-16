@@ -9,6 +9,7 @@
 namespace App\Tool;
 
 use Doctrine\Common\Comparable;
+
 class Cotation implements Comparable
 {
     const pattern = '/([1-9])([abcABC])(\+*)/';
