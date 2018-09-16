@@ -1,2 +1,7 @@
 /docker-compose.override.yaml
 /docker-compose.override.yml
+
+### IDE JetBrain - all other .idea files must be commited
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
