@@ -31,6 +31,7 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/jdorn/sql-formatter" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/html-to-markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/mashape/unirest-php" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/nelmio/cors-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/ocramius/package-versions" />
