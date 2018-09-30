@@ -9,22 +9,18 @@
 namespace App\Listener;
 
 use App\Entity\Site;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\Serializer\SerializerInterface;
 use Unirest\Request;
 class SiteListener
 {
     private $googleApiKey;
     private $googleUrl;
-    private $serializer;
-    public function __construct($googleApiKey, $geocodingUrl, SerializerInterface $serializer)
+    public function __construct($googleApiKey, $geocodingUrl)
     {
         $this->googleApiKey = $googleApiKey;
         $this->googleUrl = $geocodingUrl;
-        $this->serializer = $serializer;
     }
 
-    public function prePersist(Site $site, LifecycleEventArgs $event)
+    public function prePersist(Site $site)
     {
         $address = $site->getAddress();
         $headers = ['Accept' => 'application/json'];
