@@ -12,7 +12,7 @@ use Doctrine\Common\Comparable;
 
 class Cotation implements Comparable
 {
-    const pattern = '/([1-9])([abcABC])(\+*)/';
+    const pattern = '/^([1-9])([abcABC])(\+*)$/';
     /**
      * @var string
      */
