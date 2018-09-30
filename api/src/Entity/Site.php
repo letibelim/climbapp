@@ -10,13 +10,15 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * This is a dummy entity. Remove it!
  *
- * @ApiResource
+ * @ApiResource(forceEager=false, normalizationContext={"groups"={"site"}}, denormalizationContext={"groups"={"site"}})
  * @ORM\Entity(repositoryClass="SiteRepository")
+ * @ORM\EntityListeners({"App\Listener\SiteListener"})
  */
 class Site
 {
@@ -32,29 +34,34 @@ class Site
     /**
      * @var string
      * @ORM\Column(type="string", length=512)
+     * @Groups({"site"})
      */
     private $name;
     /**
      * @var string
      * @ORM\Column(type="string", length=128, nullable=true)
+     * @Groups({"site"})
      */
     private $coordinates;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean")
+     * @Groups({"site"})
      */
     private $isKidFriendly = false;
 
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"site"})
      */
     public $description;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Address", inversedBy="site", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"site"})
      */
     private $address;
 
@@ -94,19 +101,19 @@ class Site
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCoordinates(): string
+    public function getCoordinates(): ?string
     {
         return $this->coordinates;
     }
 
     /**
-     * @param string $coordinates
+     * @param string|null $coordinates
      *
      * @return Site
      */
-    public function setCoordinates(string $coordinates): Site
+    public function setCoordinates(?string $coordinates): Site
     {
         $this->coordinates = $coordinates;
         return $this;
@@ -131,7 +138,7 @@ class Site
         return $this;
     }
 
-    public function getAddress(): ?Address
+    public function getAddress(): Address
     {
         return $this->address;
     }

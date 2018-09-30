@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -19,32 +20,38 @@ class Address
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"site"})
      */
-    private $line1;
+    private $line1 = '';
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"site"})
      */
-    private $line2;
+    private $line2 = '';
 
     /**
      * @ORM\Column(type="string", length=16)
+     * @Groups({"site"})
      */
     private $postcode;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Groups({"site"})
      */
     private $town;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Groups({"site"})
      */
     private $country;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Site", mappedBy="address", cascade={"persist", "remove"})
+     * @Groups({"site"})
      */
     private $site;
 
@@ -53,31 +60,31 @@ class Address
         return $this->id;
     }
 
-    public function getLine1(): ?string
+    public function getLine1(): string
     {
         return $this->line1;
     }
 
-    public function setLine1(?string $line1): self
+    public function setLine1(string $line1): self
     {
         $this->line1 = $line1;
 
         return $this;
     }
 
-    public function getLine2(): ?string
+    public function getLine2(): string
     {
         return $this->line2;
     }
 
-    public function setLine2(?string $line2): self
+    public function setLine2(string $line2): self
     {
         $this->line2 = $line2;
 
         return $this;
     }
 
-    public function getPostcode(): ?string
+    public function getPostcode(): string
     {
         return $this->postcode;
     }
@@ -89,7 +96,7 @@ class Address
         return $this;
     }
 
-    public function getTown(): ?string
+    public function getTown(): string
     {
         return $this->town;
     }
@@ -101,7 +108,7 @@ class Address
         return $this;
     }
 
-    public function getCountry(): ?string
+    public function getCountry(): string
     {
         return $this->country;
     }
@@ -128,5 +135,10 @@ class Address
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getLine1() . ' ' . $this->getLine2() . ' ' . $this->getPostcode() . ' ' . $this->getTown() . ' ' . $this->getCountry();
     }
 }
