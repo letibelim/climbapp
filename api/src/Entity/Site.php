@@ -53,6 +53,12 @@ class Site
     public $description;
 
     /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Address", inversedBy="site", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $address;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -122,6 +128,18 @@ class Site
     public function setIsKidFriendly(bool $isKidFriendly): Site
     {
         $this->isKidFriendly = $isKidFriendly;
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
         return $this;
     }
 
