@@ -113,6 +113,9 @@
     "league/html-to-markdown": {
         "version": "4.6.2"
     },
+    "mashape/unirest-php": {
+        "version": "v3.0.4"
+    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
