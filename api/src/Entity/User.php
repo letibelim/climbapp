@@ -34,6 +34,11 @@ class User
      */
     private $email;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
+     */
+    private $address;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class User
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
 
         return $this;
     }
