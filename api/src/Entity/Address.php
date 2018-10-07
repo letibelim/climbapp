@@ -9,6 +9,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\AddressRepository")
+ * @ORM\EntityListeners({"App\Listener\AddressListener"})
  */
 class Address
 {
@@ -49,11 +50,11 @@ class Address
      */
     private $country;
 
+
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Site", mappedBy="address", cascade={"persist", "remove"})
-     * @Groups({"site"})
+     * @ORM\Column(type="string", length=64, nullable=true)
      */
-    private $site;
+    private $coordinates;
 
     public function getId(): ?int
     {
@@ -120,25 +121,20 @@ class Address
         return $this;
     }
 
-    public function getSite(): ?Site
-    {
-        return $this->site;
-    }
-
-    public function setSite(Site $site): self
-    {
-        $this->site = $site;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $site->getAddress()) {
-            $site->setAddress($this);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->getLine1() . ' ' . $this->getLine2() . ' ' . $this->getPostcode() . ' ' . $this->getTown() . ' ' . $this->getCountry();
+    }
+
+    public function getCoordinates(): ?string
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(?string $coordinates): self
+    {
+        $this->coordinates = $coordinates;
+
+        return $this;
     }
 }

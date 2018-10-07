@@ -11,14 +11,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * This is a dummy entity. Remove it!
  *
  * @ApiResource(forceEager=false, normalizationContext={"groups"={"site"}}, denormalizationContext={"groups"={"site"}})
  * @ORM\Entity(repositoryClass="SiteRepository")
- * @ORM\EntityListeners({"App\Listener\SiteListener"})
+ *
  */
 class Site
 {
@@ -37,12 +36,6 @@ class Site
      * @Groups({"site"})
      */
     private $name;
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=128, nullable=true)
-     * @Groups({"site"})
-     */
-    private $coordinates;
 
     /**
      * @var bool
@@ -59,7 +52,7 @@ class Site
     public $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Address", inversedBy="site", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Address", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"site"})
      */
@@ -97,25 +90,6 @@ class Site
     public function setName(string $name): Site
     {
         $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCoordinates(): ?string
-    {
-        return $this->coordinates;
-    }
-
-    /**
-     * @param string|null $coordinates
-     *
-     * @return Site
-     */
-    public function setCoordinates(?string $coordinates): Site
-    {
-        $this->coordinates = $coordinates;
         return $this;
     }
 

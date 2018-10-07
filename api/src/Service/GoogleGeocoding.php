@@ -2,15 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: thibault
- * Date: 30/09/18
- * Time: 20:21
+ * Date: 07/10/18
+ * Time: 11:11
+ *
+ * Google Geocoding service. See https://developers.google.com/maps/documentation/geocoding/start
+ * Use Unirest library for request : http://unirest.io/php.html
  */
 
-namespace App\Listener;
+namespace App\Service;
 
-use App\Entity\Site;
+use App\Entity\Address;
 use Unirest\Request;
-class SiteListener
+
+class GoogleGeocoding
 {
     private $googleApiKey;
     private $googleUrl;
@@ -20,9 +24,8 @@ class SiteListener
         $this->googleUrl = $geocodingUrl;
     }
 
-    public function prePersist(Site $site)
+    public function getCoordinates(Address $address)
     {
-        $address = $site->getAddress();
         $headers = ['Accept' => 'application/json'];
         $query = [
             'key' => $this->googleApiKey,
@@ -30,9 +33,10 @@ class SiteListener
         ];
 
         $response = Request::get($this->googleUrl, $headers, $query);
-        if ($response->code === 200){
-            $coordinates = $response->body->results[0]->geometry->location;
-            $site->setCoordinates($coordinates->lat . ',' . $coordinates->lng);
+        if ($response->code === 200) {
+            return $response->body->results[0]->geometry->location;
         }
+
+        return null;
     }
 }
