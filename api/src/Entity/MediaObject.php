@@ -4,21 +4,27 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Traits\updatedAt;
+use App\Controller\CreateMediaObjectAction;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ApiResource()
+ * @ApiResource(iri="http://schema.org/MediaObject", collectionOperations={
+ *     "get",
+ *     "post"={
+ *         "method"="POST",
+ *         "path"="/media_objects",
+ *         "controller"=CreateMediaObjectAction::class,
+ *         "defaults"={"_api_receive"=false},
+ *     },
+ * })
+ * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="App\Repository\MediaObjectRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class MediaObject
 {
-    use updatedAt;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -31,42 +37,19 @@ class MediaObject
      * @Assert\NotNull()
      * @Vich\UploadableField(mapping="media_object", fileNameProperty="contentUrl")
      */
-    private $file;
+    public $file;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      * @ApiProperty(iri="http://schema.org/contentUrl")
      */
-    private $contentUrl;
+    public $contentUrl;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
-    public function getContentUrl(): ?string
-    {
-        return $this->contentUrl;
-    }
-
-    public function setContentUrl(?string $contentUrl): self
-    {
-        $this->contentUrl = $contentUrl;
-
-        return $this;
-    }
 
 }

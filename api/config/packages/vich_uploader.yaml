@@ -1,10 +1,12 @@
 vich_uploader:
     db_driver: orm
+    storage: flysystem
 
     mappings:
         media_object:
             uri_prefix: /media
-            upload_destination: '%kernel.project_dir%/public/media'
+#            upload_destination: '%kernel.project_dir%/public/media'
+            upload_destination: media_file_fs
 
     # ----Example-----
 
