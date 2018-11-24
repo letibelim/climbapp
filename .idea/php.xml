@@ -92,6 +92,9 @@
       <path value="$PROJECT_DIR$/api/vendor/symfony/templating" />
       <path value="$PROJECT_DIR$/api/vendor/jms/metadata" />
       <path value="$PROJECT_DIR$/api/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/oneup/flysystem-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/api/vendor/sensio/framework-extra-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

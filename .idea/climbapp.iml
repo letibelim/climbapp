@@ -32,12 +32,14 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/jdorn/sql-formatter" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/jms/metadata" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/html-to-markdown" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/mashape/unirest-php" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/nelmio/cors-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/ocramius/package-versions" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/ocramius/proxy-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/oneup/flysystem-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/php-cs-fixer/diff" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/phpdocumentor/reflection-common" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/phpdocumentor/reflection-docblock" />
@@ -47,6 +49,7 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/sensio/framework-extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/asset" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/cache" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/symfony/config" />
